@@ -30,5 +30,8 @@ public class Prueba {
 		}
 		finally {
 		}
+		Encuesta e1=new Encuesta(1,2003);
+		System.out.println(e1);
+		System.out.println(e1.getPregunta(1));
 	}
 }
