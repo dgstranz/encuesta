@@ -24,14 +24,24 @@ public class Prueba {
 			respuestas.put(edades5564,lista);
 			respuestas.put(edades6599,lista);
 			System.out.println(respuestas);
+			Encuesta e1=new Encuesta(1,2003);
+			System.out.println(e1);
+			System.out.println(e1.getPregunta(1));
+			PreguntaUno p1=(PreguntaUno)e1.getPregunta(1);
+			System.out.println(p1.getRespuesta(2));
+			p1.setResultados(70.1, 1.9, 15.5, 8.5, 4.0);
+			p1.setResultadosPorEdad(edades1824, 55, 2, 23, 18, 2);
+			p1.setResultadosPorEdad(edades2534, 63, 2, 19, 14, 2);
+			p1.setResultadosPorEdad(edades3544, 71, 1, 15, 11, 2);
+			p1.setResultadosPorEdad(edades4554, 79, 1, 11, 7, 2);
+			p1.setResultadosPorEdad(edades5564, 87, 0, 7, 4, 2);
+			p1.setResultadosPorEdad(edades6599, 95, 0, 3, 0, 2);
+			System.out.println(p1.getResultados(3));
+			System.out.println(e1.getResultadosPorEdad(1,edades1824,3));
+			System.out.println(e1.getResultadosPorEdad(8,edades1824,8));
 		}
 		catch(Exception e) {
 			System.out.println(e);
 		}
-		finally {
-		}
-		Encuesta e1=new Encuesta(1,2003);
-		System.out.println(e1);
-		System.out.println(e1.getPregunta(1));
 	}
 }
