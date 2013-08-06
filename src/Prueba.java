@@ -1,13 +1,7 @@
+import java.util.TreeMap;
+
 public class Prueba {
 	public static void main(String[] args) {
-		ListaRespuestas lista=new ListaRespuestas();
-		Respuesta r1=new Respuesta(1,"Respuesta 1");
-		Respuesta r2=new Respuesta(2,"Respuesta 2");
-		Respuesta r3=new Respuesta(3,"Respuesta 3");
-		lista.put(r3,24.8);
-		lista.put(r1,12.4);
-		lista.put(r2,49.6);
-		System.out.println(lista);
 		try {
 			GrupoEdadEncuesta edades1824=new GrupoEdadEncuesta(18,24);
 			GrupoEdadEncuesta edades2534=new GrupoEdadEncuesta(25,34);
@@ -15,19 +9,44 @@ public class Prueba {
 			GrupoEdadEncuesta edades4554=new GrupoEdadEncuesta(45,54);
 			GrupoEdadEncuesta edades5564=new GrupoEdadEncuesta(55,64);
 			GrupoEdadEncuesta edades6599=new GrupoEdadEncuesta(65,99);
-			ConjuntoRespuestas respuestas=new ConjuntoRespuestas();
-			respuestas.setRespuestaGlobal(lista);
-			respuestas.put(edades1824,lista);
-			respuestas.put(edades2534,lista);
-			respuestas.put(edades3544,lista);
-			respuestas.put(edades4554,lista);
-			respuestas.put(edades5564,lista);
-			respuestas.put(edades6599,lista);
-			System.out.println(respuestas);
-			Encuesta e1=new Encuesta(1,2003);
+			
+			String enunciado1="¿Cómo se define Ud. en materia religiosa: católico/a, creyente de otra religión, no creyente o ateo/a?";
+			Respuesta respuesta101=new Respuesta(101,"Católico/a");
+			Respuesta respuesta102=new Respuesta(102,"Creyente de otra religión");
+			Respuesta respuesta103=new Respuesta(103,"No creyente");
+			Respuesta respuesta104=new Respuesta(104,"Ateo/a");
+			Respuesta respuesta105=new Respuesta(105,"N.C.");
+			PreguntaCinco p1=new PreguntaCinco(1,enunciado1,respuesta101,respuesta102,respuesta103,respuesta104,respuesta105);
+			
+			String enunciado2="¿Con qué frecuencia asiste Ud. a misa u otros oficios religiosos, sin contar las ocasiones relacionadas con ceremonias de tipo social, por ejemplo, bodas, comuniones o funerales?";
+			Respuesta respuesta201=new Respuesta(201,"Casi nunca");
+			Respuesta respuesta202=new Respuesta(202,"Varias veces al año");
+			Respuesta respuesta203=new Respuesta(203,"Alguna vez al mes");
+			Respuesta respuesta204=new Respuesta(204,"Casi todos los domingos y festivos");
+			Respuesta respuesta205=new Respuesta(205,"Varias veces a la semana");
+			Respuesta respuesta206=new Respuesta(206,"N.C.");
+			PreguntaSeis p2=new PreguntaSeis(2,enunciado2,respuesta201,respuesta202,respuesta203,respuesta204,respuesta205,respuesta206);
+			
+			System.out.println(p1.getCodigo());
+			System.out.println(p1.getEnunciadoRespuesta(102));
+			System.out.println(p1);
+			
+			TreeMap<Integer,Pregunta> preguntas=new TreeMap<Integer,Pregunta>();
+			preguntas.put(1,p1);
+			preguntas.put(2,p2);
+			
+			p1.setResultados(29.8, 25.0, 20.0, 15.0, 10.0);
+			System.out.println(p1.getResultado(respuesta102));
+			System.out.println(p1.getResultado(102));
+			
+			p1.setResultadosPorEdad(edades1824, 32.2, 26.1, 20.0, 13.9, 7.8);
+			System.out.println(p1.getResultadoPorEdad(edades1824, respuesta102));
+			System.out.println(p1.getResultadoPorEdad(edades1824, 102));
+			
+			/*Encuesta e1=new Encuesta(1,2003);
 			System.out.println(e1);
 			System.out.println(e1.getPregunta(1));
-			PreguntaUno p1=(PreguntaUno)e1.getPregunta(1);
+			PreguntaCinco p1=(PreguntaCinco)e1.getPregunta(1);
 			System.out.println(p1.getRespuesta(2));
 			p1.setResultados(70.1, 1.9, 15.5, 8.5, 4.0);
 			p1.setResultadosPorEdad(edades1824, 55, 2, 23, 18, 2);
@@ -38,7 +57,7 @@ public class Prueba {
 			p1.setResultadosPorEdad(edades6599, 95, 0, 3, 0, 2);
 			System.out.println(p1.getResultados(3));
 			System.out.println(e1.getResultadosPorEdad(1,edades1824,3));
-			System.out.println(e1.getResultadosPorEdad(8,edades1824,8));
+			System.out.println(e1.getResultadosPorEdad(8,edades1824,8));*/
 		}
 		catch(Exception e) {
 			System.out.println(e);

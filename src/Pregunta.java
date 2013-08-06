@@ -1,21 +1,86 @@
-public interface Pregunta {
-	public int getCodigo();
-	public String getEnunciado();
-	public String getRespuesta(int i);
+import java.util.TreeMap;
+
+public class Pregunta {
+	protected int codigo;
+	protected String enunciado;
+	protected int numRespuestas;
+	protected TreeMap<Integer,Respuesta> respuestas;
+	protected TreeMap<Respuesta,Double> resultados;
+	protected TreeMap<RespuestaEdad,Double> resultadosPorEdad;
 	
-	public void setResultados(Respuesta respuesta,double resultado);
-	public void setResultados(int respuesta,double resultado) throws Exception;
-	public void setResultados(double r0,double r1,double r2,double r3,double r4) throws Exception;
-	public void setResultados(double r0,double r1,double r2,double r3,double r4,double r5) throws Exception;
-	public double getResultados(Respuesta respuesta);
-	public double getResultados(int num);
+	public Pregunta() {
+		respuestas=new TreeMap<Integer,Respuesta>();
+		resultados=new TreeMap<Respuesta,Double>();
+		resultadosPorEdad=new TreeMap<RespuestaEdad,Double>();
+	}
 	
-	public void setResultadosPorEdad(GrupoEdadEncuesta edades,Respuesta respuesta,double resultado);
-	public void setResultadosPorEdad(GrupoEdadEncuesta edades,int respuesta,double resultado) throws Exception;
-	public void setResultadosPorEdad(GrupoEdadEncuesta edades,double r0,double r1,double r2,double r3,double r4) throws Exception;
-	public void setResultadosPorEdad(GrupoEdadEncuesta edades,double r0,double r1,double r2,double r3,double r4,double r5) throws Exception;
-	public double getResultadosPorEdad(GrupoEdadEncuesta edades,Respuesta respuesta);
-	public double getResultadosPorEdad(GrupoEdadEncuesta edades,int respuesta);
+	public int getCodigo() {
+		return codigo;
+	}
 	
-	public String toString();
+	public String getEnunciado() {
+		return enunciado;
+	}
+	
+	public Respuesta getRespuesta(int i) {
+		return respuestas.get(i);
+	}
+	
+	public String getEnunciadoRespuesta(int i) {
+		return respuestas.get(i).getEnunciado();
+	}
+	
+	//Setters y getters para resultados	
+	public void setResultado(Respuesta respuesta,double resultado) throws Exception {
+		if(respuestas.containsValue(respuesta)) {
+			resultados.put(respuesta,resultado);
+		}
+		else throw new Exception("Respuesta no válida.");
+	}
+	
+	public void setResultado(int num,double resultado) throws Exception {
+		if(respuestas.containsKey(num)) {
+			resultados.put(respuestas.get(num),resultado);
+		}
+		else throw new Exception("Respuesta no válida.");
+	}
+	
+	public double getResultado(Respuesta respuesta) {
+		return resultados.get(respuesta);
+	}
+	
+	public double getResultado(int codigo) {
+		return this.getResultado(respuestas.get(codigo));
+	}
+	
+	//Setters y getters para resultados por edad
+	public void setResultadoPorEdad(GrupoEdadEncuesta edades,Respuesta respuesta,double resultado) {
+		RespuestaEdad re=new RespuestaEdad(edades,respuesta);
+		resultadosPorEdad.put(re,resultado);
+	}
+	
+	public void setResultadoPorEdad(GrupoEdadEncuesta edades,int respuesta,double resultado) throws Exception {
+		if(respuestas.containsKey(respuesta)) {
+			RespuestaEdad re=new RespuestaEdad(edades,respuestas.get(respuesta));
+			resultadosPorEdad.put(re,resultado);
+		}
+		else throw new Exception("Código de respuesta no encontrado.");
+	}
+	
+	public double getResultadoPorEdad(GrupoEdadEncuesta edades,Respuesta respuesta) {
+		RespuestaEdad re=new RespuestaEdad(edades,respuesta);
+		return resultadosPorEdad.get(re);
+	}
+	
+	public double getResultadoPorEdad(GrupoEdadEncuesta edades,int codigo) {
+		return this.getResultadoPorEdad(edades,respuestas.get(codigo));
+	}
+	
+	public String toString() {
+		String s=""+enunciado;
+		/*for(int i=0;i<numRespuestas;i++) {
+			s+="\n- "+respuestas[i].getEnunciado()+" ";
+		}*/
+		return s;
+	}
 }
