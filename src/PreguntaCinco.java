@@ -4,12 +4,13 @@ public class PreguntaCinco extends Pregunta {
 	public PreguntaCinco(int codigo,String enunciado,Respuesta r0,Respuesta r1,Respuesta r2,Respuesta r3,Respuesta r4) throws Exception {
 		super.codigo=codigo;
 		super.enunciado=enunciado;
+		super.numRespuestas=5;
 		super.respuestas.put(r0.getCodigo(),r0);
 		super.respuestas.put(r1.getCodigo(),r1);
 		super.respuestas.put(r2.getCodigo(),r2);
 		super.respuestas.put(r3.getCodigo(),r3);
 		super.respuestas.put(r4.getCodigo(),r4);
-		if(super.respuestas.size()!=5) throw new Exception("Códigos duplicados.");
+		if(super.respuestas.size()!=numRespuestas) throw new Exception("Códigos duplicados.");
 		super.resultados=new TreeMap<Respuesta,Double>();
 		super.resultadosPorEdad=new TreeMap<RespuestaEdad,Double>();
 	}
@@ -20,7 +21,7 @@ public class PreguntaCinco extends Pregunta {
 	
 	//Setters y getters para resultados		
 	public void setResultados(double r0,double r1,double r2,double r3,double r4) throws Exception {
-		if(super.respuestas.size()!=5) throw new Exception("Número de respuestas incorrecto.");
+		if(super.respuestas.size()!=numRespuestas) throw new Exception("Número de respuestas incorrecto.");
 		int k=super.respuestas.firstKey();
 		super.setResultado(k,r0);
 		k=super.respuestas.higherKey(k);
@@ -35,7 +36,7 @@ public class PreguntaCinco extends Pregunta {
 	
 	//Setters y getters para resultados por edad	
 	public void setResultadosPorEdad(GrupoEdadEncuesta edades,double r0,double r1,double r2,double r3,double r4) throws Exception {
-		if(super.respuestas.size()!=5) throw new Exception("Número de respuestas incorrecto.");
+		if(super.respuestas.size()!=numRespuestas) throw new Exception("Número de respuestas incorrecto.");
 		int k=super.respuestas.firstKey();
 		super.setResultadoPorEdad(edades,k,r0);
 		k=super.respuestas.higherKey(k);
