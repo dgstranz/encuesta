@@ -27,7 +27,7 @@ public class Pregunta {
 	}
 	
 	public String getEnunciadoRespuesta(int i) {
-		return respuestas.get(i).getEnunciado();
+		return respuestas.get(i).toString();
 	}
 	
 	//Setters y getters para resultados	
@@ -77,10 +77,6 @@ public class Pregunta {
 	}
 	
 	public String toString() {
-		String s=""+enunciado;
-		/*for(int i=0;i<numRespuestas;i++) {
-			s+="\n- "+respuestas[i].getEnunciado()+" ";
-		}*/
-		return s;
+		return enunciado;
 	}
 }

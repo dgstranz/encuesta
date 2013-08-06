@@ -43,11 +43,8 @@ public class Prueba {
 			System.out.println(p1.getResultadoPorEdad(edades1824, respuesta102));
 			System.out.println(p1.getResultadoPorEdad(edades1824, 102));
 			
-			/*Encuesta e1=new Encuesta(1,2003);
+			Encuesta e1=new Encuesta(1,2003,preguntas);
 			System.out.println(e1);
-			System.out.println(e1.getPregunta(1));
-			PreguntaCinco p1=(PreguntaCinco)e1.getPregunta(1);
-			System.out.println(p1.getRespuesta(2));
 			p1.setResultados(70.1, 1.9, 15.5, 8.5, 4.0);
 			p1.setResultadosPorEdad(edades1824, 55, 2, 23, 18, 2);
 			p1.setResultadosPorEdad(edades2534, 63, 2, 19, 14, 2);
@@ -55,9 +52,9 @@ public class Prueba {
 			p1.setResultadosPorEdad(edades4554, 79, 1, 11, 7, 2);
 			p1.setResultadosPorEdad(edades5564, 87, 0, 7, 4, 2);
 			p1.setResultadosPorEdad(edades6599, 95, 0, 3, 0, 2);
-			System.out.println(p1.getResultados(3));
-			System.out.println(e1.getResultadosPorEdad(1,edades1824,3));
-			System.out.println(e1.getResultadosPorEdad(8,edades1824,8));*/
+			System.out.println(p1.getResultado(103));
+			System.out.println(e1.getResultadoPorEdad(1,edades1824,103));
+			System.out.println(e1.getResultadoPorEdad(8,edades1824,103));
 		}
 		catch(Exception e) {
 			System.out.println(e);
