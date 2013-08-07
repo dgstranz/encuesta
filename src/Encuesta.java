@@ -32,6 +32,10 @@ public class Encuesta {
 		else throw new Exception("No existe esa pregunta.");
 	}
 	
+	public TreeMap<Integer,Pregunta> getPreguntas() {
+		return preguntas;
+	}
+	
 	//Acceso a las preguntas	
 	public void setResultados(Pregunta pregunta,Respuesta respuesta,double resultado) throws Exception {
 		this.getPregunta(pregunta).setResultado(respuesta,resultado);
@@ -94,6 +98,14 @@ public class Encuesta {
 	
 	public double getResultadoPorEdad(int pregunta,GrupoEdadEncuesta edades,int respuesta) throws Exception {
 		return this.getPregunta(pregunta).getResultadoPorEdad(edades,respuesta);
+	}
+	
+	public int compareTo(Encuesta encuesta) {
+		return fecha.compareTo(encuesta.getFecha());
+	}
+	
+	public boolean equals(Encuesta encuesta) {
+		return (fecha==encuesta.getFecha() && preguntas.entrySet()==encuesta.getPreguntas().entrySet());
 	}
 	
 	public String toString() {

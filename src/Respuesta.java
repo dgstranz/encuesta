@@ -11,13 +11,21 @@ public class Respuesta implements Comparable<Respuesta> {
 		return codigo;
 	}
 	
-	public int compareTo(Respuesta r) {
-		if(codigo<r.getCodigo()) return -1;
-		else if(codigo>r.getCodigo()) return 1;
+	public String getEnunciado() {
+		return enunciado;
+	}
+	
+	public int compareTo(Respuesta respuesta) {
+		if(codigo<respuesta.getCodigo()) return -1;
+		else if(codigo>respuesta.getCodigo()) return 1;
 		else return 0;
 	}
 	
+	public boolean equals(Respuesta respuesta) {
+		return codigo==respuesta.getCodigo();
+	}
+	
 	public String toString() {
-		return enunciado;
+		return codigo+" "+enunciado;
 	}
 }

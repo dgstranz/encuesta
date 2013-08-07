@@ -54,7 +54,16 @@ public class Prueba {
 			p1.setResultadosPorEdad(edades6599, 95, 0, 3, 0, 2);
 			System.out.println(p1.getResultado(103));
 			System.out.println(e1.getResultadoPorEdad(1,edades1824,103));
-			System.out.println(e1.getResultadoPorEdad(8,edades1824,103));
+			//System.out.println(e1.getResultadoPorEdad(8,edades1824,103));
+			
+			System.out.println(p1.getCodigo());
+			System.out.println(p1.getEnunciado());
+			System.out.println(p1.getRespuesta(101));
+			System.out.println(p1.getEnunciadoRespuesta(101));
+			System.out.println(p1.getRespuestas());
+			p1.setResultado(101,12.3);
+			p1.setResultado(respuesta102,23.4);
+			System.out.println(p1.getResultado(1013));
 		}
 		catch(Exception e) {
 			System.out.println(e);
