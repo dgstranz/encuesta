@@ -44,8 +44,7 @@ public class Pregunta implements Comparable<Pregunta> {
 	}
 	
 	public void setResultado(int codigo,double resultado) throws Exception {
-		if(respuestas.containsKey(codigo)) resultados.put(respuestas.get(codigo),resultado);
-		else throw new Exception("Respuesta inexistente.");
+		this.setResultado(respuestas.get(codigo),resultado);
 	}
 	
 	public double getResultado(Respuesta respuesta) throws Exception {
@@ -54,8 +53,7 @@ public class Pregunta implements Comparable<Pregunta> {
 	}
 	
 	public double getResultado(int codigo) throws Exception {
-		if(respuestas.containsKey(codigo)) return this.getResultado(respuestas.get(codigo));
-		else throw new Exception("Respuesta inexistente.");
+		return this.getResultado(respuestas.get(codigo));
 	}
 	
 	//Setters y getters para resultados por edad
@@ -67,18 +65,17 @@ public class Pregunta implements Comparable<Pregunta> {
 		else throw new Exception("Respuesta inexistente.");
 	}
 	
-	public void setResultadoPorEdad(GrupoEdadEncuesta edades,int respuesta,double resultado) throws Exception {
-		if(respuestas.containsKey(respuesta)) {
-			RespuestaEdad re=new RespuestaEdad(edades,respuestas.get(respuesta));
-			resultadosPorEdad.put(re,resultado);
-		}
-		else throw new Exception("Respuesta inexistente.");
+	public void setResultadoPorEdad(GrupoEdadEncuesta edades,int codigo,double resultado) throws Exception {
+		this.setResultadoPorEdad(edades,respuestas.get(codigo),resultado);
 	}
 	
 	public double getResultadoPorEdad(GrupoEdadEncuesta edades,Respuesta respuesta) throws Exception {
 		if(respuestas.containsValue(respuesta)) {
 			RespuestaEdad re=new RespuestaEdad(edades,respuesta);
-			return resultadosPorEdad.get(re);
+			if(resultadosPorEdad.containsKey(re)) {
+				return resultadosPorEdad.get(re);
+			}
+			else throw new Exception("No se ha encontrado ningún resultado para esa respuesta y grupo de edad.");
 		}
 		else throw new Exception("Respuesta inexistente.");
 	}
@@ -87,6 +84,7 @@ public class Pregunta implements Comparable<Pregunta> {
 		return this.getResultadoPorEdad(edades,respuestas.get(codigo));
 	}
 	
+	//Otros métodos
 	public int compareTo(Pregunta pregunta) {
 		if(codigo<pregunta.getCodigo()) return -1;
 		else if(codigo>pregunta.getCodigo()) return 1;
