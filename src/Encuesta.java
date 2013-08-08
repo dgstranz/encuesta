@@ -1,6 +1,6 @@
 import java.util.TreeMap;
 
-public class Encuesta {
+public class Encuesta implements Comparable<Encuesta> {
 	private Fecha fecha;
 	private TreeMap<Integer,Pregunta> preguntas;
 	

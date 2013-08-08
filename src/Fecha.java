@@ -1,4 +1,4 @@
-public class Fecha {
+public class Fecha implements Comparable<Fecha> {
 	private int mes;
 	private int año;
 	
